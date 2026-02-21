@@ -1,5 +1,11 @@
 # Windows 文件清理工具 (Windows Cleaner)
 
+[![GitHub stars](https://img.shields.io/github/stars/allexx505/windows_cleaner?style=social)](https://github.com/allexx505/windows_cleaner/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/allexx505/windows_cleaner?style=social)](https://github.com/allexx505/windows_cleaner/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/allexx505/windows_cleaner)](https://github.com/allexx505/windows_cleaner/issues)
+[![GitHub license](https://img.shields.io/github/license/allexx505/windows_cleaner)](https://github.com/allexx505/windows_cleaner/blob/main/LICENSE)
+[![GitHub release](https://img.shields.io/github/v/release/allexx505/windows_cleaner)](https://github.com/allexx505/windows_cleaner/releases)
+
 Windows 下的轻量级文件清理与磁盘监控工具：支持类似 Everything 的快速扫描思路（NTFS USN Journal）、大文件与垃圾目录监控、清理规则与阈值提醒，并提供 GUI、内置网页与外置 API。
 
 **本项目使用 [Cursor](https://cursor.com) 全程开发，欢迎提出建议与反馈，后续会继续使用 Cursor 进行优化。**
@@ -74,3 +80,52 @@ Windows 下的轻量级文件清理与磁盘监控工具：支持类似 Everythi
 ## 许可证
 
 见 [LICENSE](LICENSE) 文件。
+
+---
+
+## 项目统计
+
+### Star 历史
+
+<a href="https://star-history.com/#allexx505/windows_cleaner&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=allexx505/windows_cleaner&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=allexx505/windows_cleaner&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=allexx505/windows_cleaner&type=Date" />
+ </picture>
+</a>
+
+### 仓库统计
+
+| 指标 | 徽章 |
+|------|------|
+| 代码大小 | ![GitHub code size](https://img.shields.io/github/languages/code-size/allexx505/windows_cleaner) |
+| 仓库大小 | ![GitHub repo size](https://img.shields.io/github/repo-size/allexx505/windows_cleaner) |
+| 语言占比 | ![Top Language](https://img.shields.io/github/languages/top/allexx505/windows_cleaner) |
+| 语言数量 | ![Languages count](https://img.shields.io/github/languages/count/allexx505/windows_cleaner) |
+
+### 提交活动
+
+| 指标 | 徽章 |
+|------|------|
+| 月提交量 | ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/allexx505/windows_cleaner) |
+| 最近提交 | ![GitHub last commit](https://img.shields.io/github/last-commit/allexx505/windows_cleaner) |
+| 贡献者数 | ![GitHub contributors](https://img.shields.io/github/contributors/allexx505/windows_cleaner) |
+| 总提交数 | ![GitHub commits](https://img.shields.io/github/commit-activity/t/allexx505/windows_cleaner) |
+
+### 贡献者
+
+<a href="https://github.com/allexx505/windows_cleaner/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=allexx505/windows_cleaner" />
+</a>
+
+### 活动图
+
+![Alt](https://repobeats.axiom.co/api/embed/0000000000000000000000000000000000000000.svg "Repobeats analytics image")
+
+> **提示**：上方活动图需要在 [Repobeats](https://repobeats.axiom.co/) 配置后替换占位符。
+> 
+> 查看详细统计：
+> - [提交历史](https://github.com/allexx505/windows_cleaner/graphs/commit-activity)
+> - [代码频率](https://github.com/allexx505/windows_cleaner/graphs/code-frequency)
+> - [贡献者统计](https://github.com/allexx505/windows_cleaner/graphs/contributors)
