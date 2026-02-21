@@ -32,6 +32,8 @@ MANIFEST
 *.manifest
 *.spec
 !WindowsCleaner.spec
+!WindowsCleaner_onefile.spec
+!WindowsCleaner_console_onefile.spec
 
 # Installer logs
 pip-log.txt
