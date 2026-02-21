@@ -61,8 +61,9 @@ class AppSettings(BaseModel):
     # Notifications
     notification: NotificationConfig = Field(default_factory=NotificationConfig)
 
-    def model_dump_json(self, **kwargs: Any) -> str:
-        return self.model_dump(mode="json", **kwargs)
+    def model_dump_json(self, *, indent: int | None = None, **kwargs: Any) -> str:
+        d = self.model_dump(mode="json")
+        return json.dumps(d, ensure_ascii=False, indent=indent)
 
 
 def ensure_config_dir() -> None:

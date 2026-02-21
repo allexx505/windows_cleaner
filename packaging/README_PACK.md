@@ -63,6 +63,31 @@ python packaging/build_exe.py
   3. Actions 在 Windows 上构建前端与 exe，生成 zip 并创建 GitHub Release，附件名为 `WindowsCleaner-v0.1.0-win64.zip`（以当前代码中的 `APP_VERSION` 为准）。
 - **发布检查**：发布前请确认已运行过 `frontend` 的 `npm run build` 且 `backend/core/constants.py` 中版本号已更新。
 
+## 调试版 exe（带控制台）
+
+若遇「无法打开、无托盘」等问题，可打包并运行**带控制台**的调试版，便于查看报错信息：
+
+```bash
+python packaging/build_exe.py --console
+```
+
+产出在 `dist/WindowsCleaner_console/WindowsCleaner_console.exe`。双击运行后会弹出控制台窗口，所有 print 与未捕获异常会显示在控制台中；同时日志仍写入 `%APPDATA%\WindowsCleaner\logs\windows_cleaner.log`。将控制台中的完整报错信息与日志文件一并提供给分析即可。
+
+## 单文件 exe（所有依赖打包进一个文件）
+
+若希望只分发一个 exe 文件（无 `_internal` 目录），可使用单文件模式：
+
+```bash
+python packaging/build_exe.py --onefile
+```
+
+产出为 `dist/WindowsCleaner.exe`（单个文件，约 50-80MB）。
+
+**注意**：
+- 首次启动会稍慢（需解压到临时目录）
+- 杀毒软件更易误报
+- 适合分发场景，不建议用于开发调试
+
 ## 常见问题
 
 - **杀毒软件误报**：PyInstaller 打包的 exe 可能被部分杀毒软件标记，可加入白名单或使用代码签名。

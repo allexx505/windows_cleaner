@@ -14,14 +14,32 @@ import zipfile
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DIST_FRONTEND = os.path.join(ROOT, "frontend", "dist")
 SPEC = os.path.join(ROOT, "WindowsCleaner.spec")
+SPEC_CONSOLE = os.path.join(ROOT, "WindowsCleaner_console.spec")
+SPEC_ONEFILE = os.path.join(ROOT, "WindowsCleaner_onefile.spec")
+SPEC_CONSOLE_ONEFILE = os.path.join(ROOT, "WindowsCleaner_console_onefile.spec")
 OUTPUT_DIR = os.path.join(ROOT, "dist")
 EXE_DIR = os.path.join(OUTPUT_DIR, "WindowsCleaner")
+EXE_DIR_CONSOLE = os.path.join(OUTPUT_DIR, "WindowsCleaner_console")
 
 
 def main() -> None:
     os.chdir(ROOT)
-    if not os.path.isfile(SPEC):
-        print("WindowsCleaner.spec not found")
+    console_build = "--console" in sys.argv or "--debug" in sys.argv
+    onefile_build = "--onefile" in sys.argv
+    if onefile_build and console_build:
+        spec = SPEC_CONSOLE_ONEFILE
+        exe_dir = OUTPUT_DIR
+    elif onefile_build:
+        spec = SPEC_ONEFILE
+        exe_dir = OUTPUT_DIR
+    elif console_build:
+        spec = SPEC_CONSOLE
+        exe_dir = EXE_DIR_CONSOLE
+    else:
+        spec = SPEC
+        exe_dir = EXE_DIR
+    if not os.path.isfile(spec):
+        print(spec, "not found")
         sys.exit(1)
     if not os.path.isdir(DIST_FRONTEND) or not os.path.isfile(os.path.join(DIST_FRONTEND, "index.html")):
         print("Frontend not built. Run: cd frontend && npm install && npm run build")
@@ -30,14 +48,14 @@ def main() -> None:
         sys.path.insert(0, ROOT)
 
     # Build with PyInstaller using the spec
-    r = subprocess.run([sys.executable, "-m", "PyInstaller", "--noconfirm", "--clean", SPEC])
+    r = subprocess.run([sys.executable, "-m", "PyInstaller", "--noconfirm", "--clean", spec])
     if r.returncode != 0:
         sys.exit(r.returncode)
 
-    print("Build done. Output:", EXE_DIR)
+    print("Build done. Output:", exe_dir)
 
-    # Optional: create zip for GitHub Release (name follows common convention)
-    if "--zip" in sys.argv:
+    # Optional: create zip for GitHub Release (name follows common convention; only for main exe)
+    if "--zip" in sys.argv and not console_build:
         version = "0.1.0"
         try:
             from backend.core.constants import APP_VERSION

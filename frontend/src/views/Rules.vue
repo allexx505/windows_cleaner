@@ -17,7 +17,10 @@
       <h2>添加规则</h2>
       <div class="form-group">
         <label>目标路径</label>
-        <input v-model="newRule.target_path" placeholder="例如 D:\Downloads" />
+        <div class="path-input">
+          <input v-model="newRule.target_path" placeholder="例如 D:\Downloads" readonly />
+          <button type="button" class="btn btn-secondary" @click="browsePath">选择文件夹</button>
+        </div>
       </div>
       <div class="form-group">
         <label>类型</label>
@@ -50,7 +53,7 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
-import { getConfig, updateConfig } from '@/api/client'
+import { getConfig, updateConfig, pickFolder } from '@/api/client'
 
 const config = reactive({ cleanup_rules: [] })
 const showAdd = ref(false)
@@ -70,6 +73,18 @@ async function load() {
     config.cleanup_rules = data.cleanup_rules || []
   } catch (e) {
     msg.value = '加载失败'
+    msgOk.value = false
+  }
+}
+
+async function browsePath() {
+  try {
+    const path = await pickFolder(newRule.target_path)
+    if (path) {
+      newRule.target_path = path
+    }
+  } catch (e) {
+    msg.value = '选择文件夹失败'
     msgOk.value = false
   }
 }
@@ -130,4 +145,6 @@ onMounted(load)
 .ok { color: #68d391; }
 .error { color: #fc8181; }
 .overlay { border: 1px solid #3182ce; }
+.path-input { display: flex; gap: 0.5rem; align-items: center; }
+.path-input input { flex: 1; }
 </style>

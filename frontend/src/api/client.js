@@ -44,3 +44,8 @@ export async function health() {
   const { data } = await client.get('/api/health')
   return data
 }
+
+export async function pickFolder(initialDir = '') {
+  const { data } = await client.get('/api/pick-folder', { params: { initial_dir: initialDir } })
+  return data.path || ''
+}

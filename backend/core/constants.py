@@ -6,7 +6,7 @@ import os
 
 # App
 APP_NAME = "Windows Cleaner"
-APP_VERSION = "1.0.0"
+APP_VERSION = "0.1.0"
 
 # Paths (under user app data to avoid admin)
 if "APPDATA" in os.environ:

@@ -153,6 +153,43 @@ def api_scan_rebuild_index(body: RebuildIndexBody) -> dict:
     return {"status": "started", "drive": drive}
 
 
+# --- Folder picker ---
+
+
+@router.get("/pick-folder")
+def api_pick_folder(initial_dir: str | None = None) -> dict:
+    """
+    Open a native folder picker dialog and return selected path.
+    Returns empty string if user cancels.
+    """
+    import threading
+    result = {"path": ""}
+    event = threading.Event()
+
+    def pick():
+        try:
+            import tkinter as tk
+            from tkinter import filedialog
+            root = tk.Tk()
+            root.withdraw()
+            root.attributes("-topmost", True)
+            path = filedialog.askdirectory(
+                initialdir=initial_dir or "",
+                title="选择文件夹"
+            )
+            root.destroy()
+            result["path"] = path or ""
+        except Exception:
+            result["path"] = ""
+        finally:
+            event.set()
+
+    t = threading.Thread(target=pick)
+    t.start()
+    event.wait(timeout=120)
+    return result
+
+
 # --- Health ---
 
 

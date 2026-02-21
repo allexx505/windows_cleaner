@@ -41,7 +41,7 @@ Windows 下的轻量级文件清理与磁盘监控工具：支持类似 Everythi
 
 ### 方式二：使用打包好的 exe（Release）
 
-1. 在本仓库的 [Releases](https://github.com/你的用户名/windows_cleaner/releases) 页面下载 `WindowsCleaner-vX.Y.Z-win64.zip`。
+1. 在本仓库的 [Releases](https://github.com/allexx505/windows_cleaner/releases) 页面下载 `WindowsCleaner-vX.Y.Z-win64.zip`。
 2. 解压后运行 `WindowsCleaner.exe`，托盘出现后从菜单「打开」进入设置与清理界面。
 
 ---
