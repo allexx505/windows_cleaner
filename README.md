@@ -123,7 +123,6 @@ Windows 下的轻量级文件清理与磁盘监控工具：支持类似 Everythi
 
 ![Alt](https://repobeats.axiom.co/api/embed/c2007c0ff1cbc999b317bb5da29e22151f9c2b1f.svg "Repobeats analytics image")
 
-> **提示**：上方活动图需要在 [Repobeats](https://repobeats.axiom.co/) 配置后替换占位符。
 > 
 > 查看详细统计：
 > - [提交历史](https://github.com/allexx505/windows_cleaner/graphs/commit-activity)
