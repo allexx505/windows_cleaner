@@ -25,7 +25,7 @@ EXE_DIR_CONSOLE = os.path.join(OUTPUT_DIR, "WindowsCleaner_console")
 def main() -> None:
     os.chdir(ROOT)
     console_build = "--console" in sys.argv or "--debug" in sys.argv
-    onefile_build = "--onefile" in sys.argv
+    onefile_build = "--onefile" in sys.argv or "--zip" in sys.argv
     if onefile_build and console_build:
         spec = SPEC_CONSOLE_ONEFILE
         exe_dir = OUTPUT_DIR
@@ -54,7 +54,7 @@ def main() -> None:
 
     print("Build done. Output:", exe_dir)
 
-    # Optional: create zip for GitHub Release (name follows common convention; only for main exe)
+    # Optional: create zip for GitHub Release
     if "--zip" in sys.argv and not console_build:
         version = "0.1.0"
         try:
@@ -63,12 +63,16 @@ def main() -> None:
         except Exception:
             pass
         zip_name = os.path.join(OUTPUT_DIR, f"WindowsCleaner-v{version}-win64.zip")
+        exe_path = os.path.join(OUTPUT_DIR, "WindowsCleaner.exe")
         with zipfile.ZipFile(zip_name, "w", zipfile.ZIP_DEFLATED) as zf:
-            for root, _dirs, files in os.walk(EXE_DIR):
-                for f in files:
-                    path = os.path.join(root, f)
-                    arc = os.path.join("WindowsCleaner", os.path.relpath(path, EXE_DIR))
-                    zf.write(path, arc)
+            if os.path.isfile(exe_path):
+                zf.write(exe_path, "WindowsCleaner.exe")
+            elif os.path.isdir(EXE_DIR):
+                for root, _dirs, files in os.walk(EXE_DIR):
+                    for f in files:
+                        path = os.path.join(root, f)
+                        arc = os.path.join("WindowsCleaner", os.path.relpath(path, EXE_DIR))
+                        zf.write(path, arc)
         print("Zip created:", zip_name)
 
 
