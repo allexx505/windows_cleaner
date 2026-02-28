@@ -1,0 +1,12 @@
+---
+description: Python coding and error-handling conventions
+globs: "**/*.py"
+alwaysApply: false
+---
+
+# Python Standards
+
+- Follow PEP 8 for style (naming, line length, imports). Use a formatter (e.g. Black, Ruff) where the project adopts one.
+- Add docstrings for public modules, classes, and functions; keep them concise.
+- Do not use bare `except:`; catch specific exceptions and log or re-raise. Prefer `logger.exception` or `logger.error` with traceback when handling errors.
+- Avoid leaving commented-out code or debug print statements in committed code; use proper logging with levels instead.

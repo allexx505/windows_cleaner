@@ -1,0 +1,13 @@
+---
+description: Vue 3 component and style conventions
+globs: "**/*.vue"
+alwaysApply: false
+---
+
+# Vue 3 Conventions
+
+- Prefer Composition API with `<script setup>` for new components.
+- Use clear component names (PascalCase) and keep single-file components focused.
+- Prefer Pinia for shared state; use provide/inject only for narrow, local concerns.
+- Keep templates readable: extract complex expressions into computed properties or methods.
+- Use kebab-case for custom events and props in templates when multi-word.

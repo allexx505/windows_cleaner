@@ -42,6 +42,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt pyinstaller
 
+      - name: Run tests
+        run: pytest backend/tests/ -v
+
       - name: Build exe and zip
         run: python packaging/build_exe.py --zip
 
