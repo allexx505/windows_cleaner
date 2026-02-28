@@ -1,13 +1,13 @@
 # One-click build and optional tag for Windows Cleaner release.
 # Run from project root: .\scripts\release.ps1
-# Requires: Python, Node, frontend already has node_modules (run npm install in frontend once).
+# Delegates frontend build + packaging to packaging/rebuild.ps1; adds version read, zip check, and tag instructions.
 
 $ErrorActionPreference = "Stop"
 $root = $PSScriptRoot + "\.."
 Push-Location $root
 
 try {
-    # Read version from backend
+    # Read version from backend (for zip verification and tag instructions)
     $constantsPath = Join-Path $root "backend\core\constants.py"
     $content = Get-Content $constantsPath -Raw
     if ($content -match 'APP_VERSION\s*=\s*"([^"]+)"') {
@@ -18,16 +18,8 @@ try {
         exit 1
     }
 
-    # Build frontend
-    Write-Host "Building frontend..."
-    Set-Location (Join-Path $root "frontend")
-    npm run build
-    if ($LASTEXITCODE -ne 0) { throw "Frontend build failed" }
-    Set-Location $root
-
-    # Build exe and zip
-    Write-Host "Running packaging/build_exe.py --zip..."
-    python packaging/build_exe.py --zip
+    # Delegate build to existing pipeline (frontend build + build_exe.py --zip)
+    & (Join-Path $root "packaging\rebuild.ps1")
     if ($LASTEXITCODE -ne 0) { throw "Build failed" }
 
     $zipName = "WindowsCleaner-v$ver-win64.zip"
