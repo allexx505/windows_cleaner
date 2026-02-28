@@ -1,0 +1,12 @@
+---
+description: Windows Cleaner project conventions (config dir, logging, single instance, resource limits)
+alwaysApply: true
+---
+
+# Windows Cleaner Conventions
+
+- **Config and logs**: Config directory is `%APPDATA%\WindowsCleaner`. Log file: `%APPDATA%\WindowsCleaner\logs\windows_cleaner.log`. Bootstrap log is written in `run.py` before any backend import so that startup failures are always visible there.
+- **Single instance**: Only one process should run; `run.py` kills previous instances (e.g. by port or mutex). Do not remove this behavior.
+- **Resource usage**: Use the existing resource guard (`backend/services/resource_guard.py`) and low-priority / batched scanning; do not add heavy polling or unbounded in-memory structures.
+- **System paths**: Be careful with Windows temp and system directories (e.g. `C:\Windows\Temp`); prefer user temp and document any admin requirements for USN or system paths.
+- For debugging steps and log meanings, see [docs/DEBUGGING.md](../../docs/DEBUGGING.md).

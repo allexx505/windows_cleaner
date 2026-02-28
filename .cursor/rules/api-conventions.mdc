@@ -1,0 +1,12 @@
+---
+description: REST API route and response conventions
+globs: "backend/api/**/*.py"
+alwaysApply: false
+---
+
+# API Conventions
+
+- Use consistent route naming: nouns for resources, HTTP methods for actions (e.g. GET /api/users, POST /api/orders).
+- Return structured JSON: success with consistent shape (e.g. `{"data": ...}` or direct array/object); errors with clear message and appropriate HTTP status (4xx/5xx).
+- Validate request body with Pydantic models; return 422 with validation details when invalid.
+- Prefer standard status codes: 200 (OK), 201 (Created), 400 (Bad Request), 404 (Not Found), 500 (Internal Server Error).
